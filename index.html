@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #444;
+        }
+
+        .btn {
+            background: transparent;
+            color: #ccc;
+            border: 1px dashed #ccc;
+            padding: 10px 30px;
+            margin: 5px;
+            cursor: pointer;
+            /* transition: all 0.2s; */
+        }
+
+        .btn:hover {
+            border: 1px solid #ccc;
+            background-color: #555;
+            padding: 10px 30px;
+        }
+
+        .btn.clicked {
+            background: #555;
+            color: #ccc;
+            border: 1px solid #222;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="btnBox"></section>
+
+    <script>
+        const btnBox = document.getElementById("btnBox")
+        const div = document.createElement('div')
+
+
+        for (let i = 0; i < 3; i++) {
+            const button = document.createElement('button')
+            button.classList.add('btn')
+            button.setAttribute('id', 'btnId')
+            const textnode = document.createTextNode("Add");
+            button.appendChild(textnode)
+            div.appendChild(button)
+
+        }
+        btnBox.appendChild(div)
+
+
+        const buttons = document.querySelectorAll('#btnId')
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('clicked')
+                if (btn.classList.contains('clicked')) {
+                    btn.textContent = 'Added'
+                } else {
+                    btn.textContent = 'Add'
+                }
+            })
+        })
+
+    </script>
+    <!-- <script>
+        const buttons = $$('#btnId')
+        const wait = (time = 0) => new Promise(resolve => setTimeout(resolve, time))
+            (async function () {
+                for (let button of buttons) {
+                    button.click()
+                    await wait(500)
+                }
+            })()
+    </script> -->
+</body>
+
+</html>
